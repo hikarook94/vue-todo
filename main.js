@@ -5,6 +5,11 @@ let app = new Vue({
     createMode: false,
     todos: []
   },
+  created: function () {
+    if (localStorage.length !== 0) {
+      this.todos = JSON.parse(localStorage.getItem('todos'))
+    }
+  },
   methods: {
     addTodo: function () {
       this.todos.push({
@@ -14,9 +19,11 @@ let app = new Vue({
       })
       this.text = ''
       this.createMode = false
+      this.writeStorage()
     },
     removeTodo: function (index) {
       this.todos.splice(index, 1)
+      this.writeStorage()
     },
     editTodo: function (index) {
       this.todos[index].edit = true
@@ -24,12 +31,20 @@ let app = new Vue({
     saveTodo: function (index, text) {
       this.todos[index].text = text
       this.todos[index].edit = false
+      this.writeStorage()
     },
     doCheck: function (index) {
       this.todos[index].done = true
+      this.writeStorage()
     },
     createNew: function () {
       this.createMode = true
+    },
+    writeStorage: function () {
+      localStorage.setItem('todos', JSON.stringify(this.todos))
+    },
+    clearStorage: function () {
+      localStorage.clear()
     }
   }
 })
