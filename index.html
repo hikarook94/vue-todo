@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Vue.js TODO</title>
+</head>
+<body>
+  <div id="app">
+    <h1 id="title">TODO リスト</h1>
+    <div id="todo-area">
+      <div id="todo" v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.done">
+        <template v-if="!todo.edit">
+          <span id="todo-text" @click="editTodo(index)" v-bind:class="{ 'line-through' : todo.done }">
+            {{ todo.text }}
+          </span>
+          <button @click="removeTodo(index)">削除</button>
+        </template>
+        <template v-else>
+          <input type="text" v-model="todo.text">
+          <button @click="saveTodo(index, todo.text)">保存</button>
+        </template>
+      </div>
+      <div id="new">
+        <template v-if="createMode">
+          <input type="text" v-model="text">
+          <button @click="addTodo()">登録</button>
+        </template>
+        <template v-else>
+          <div @click="createNew()">+ 新規作成</div>
+        </template>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
