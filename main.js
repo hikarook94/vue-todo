@@ -1,6 +1,7 @@
 let app = new Vue({
   el: '#app',
   data: {
+    maxId: null,
     text: '',
     createMode: false,
     todos: []
@@ -12,7 +13,11 @@ let app = new Vue({
   },
   methods: {
     addTodo: function () {
+      this.maxId = this.todos.reduce((a, b) => {
+        return a > b.id ? a : b.id
+      }, 0)
       this.todos.push({
+        id: this.maxId + 1,
         text: this.text,
         done: false,
         edit: false
@@ -25,8 +30,12 @@ let app = new Vue({
       this.todos.splice(index, 1)
       this.writeStorage()
     },
-    editTodo: function (index) {
+    onEditTodo: function (index) {
       this.todos[index].edit = true
+    },
+    offEditTodo: function (index) {
+      this.text =''
+      this.todos[index].edit = false
     },
     saveTodo: function (index, text) {
       this.todos[index].text = text
@@ -49,6 +58,15 @@ let app = new Vue({
     },
     clearStorage: function () {
       localStorage.clear()
+    },
+    removeTargetId: function(index) {
+      return this.todos[index].id + 'remove'
+    },
+    updateTargetId: function (index) {
+      return this.todos[index].id + 'update'
+    },
+    doneTargetId: function (index) {
+      return this.todos[index].id + 'done'
     }
   }
 })

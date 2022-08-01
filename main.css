@@ -1,3 +1,346 @@
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+/*  */
+html {
+  font-size: 24px;
+  color: white;
+  background-color: darkslategray;
+}
+#header {
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 16px;
+}
+#title {
+  margin-left: 20%;
+  height: 100%;
+  line-height: 64px;
+}
+#todo-area {
+  width: 60%;
+  margin: 0 auto;
+}
+.todo {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  display: flex;
+}
+.todo:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.todo-text-container {
+  width: 80%;
+  height: 80%;
+  margin: auto 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.todo-text {
+  width: 100%;
+  overflow-wrap: break-word;
+}
+.todo-checkbox-container {
+  width: 10%;
+  position: relative;
+}
+.todo-checkbox {
+  display: none;
+}
+.todo-checkbox-box {
+  cursor: pointer;
+  width: 20%;
+  padding-top: 20%;
+  border: 2px solid white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.todo-checkbox-check {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid yellow;
+  border-bottom: 2px solid yellow;
+  transform: rotate(-45deg);
+}
 .line-through {
   text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5);
+}
+.todo-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 96%;
+  height: 100%;
+  font-size: 1rem;
+  color: white;
+  outline: none;
+}
+.todo-button-container {
+  width: 10%;
+  position: relative;
+  display: flex;
+}
+.todo-button-area {
+  position: relative;
+  width: 50%;
+}
+.todo-button {
+  display: none;
+}
+.remove-mark {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  /* left: 50%; */
+  margin: 0 20px 0 7px;
+  padding: 0;
+  width: 4px;
+  height: 20px;
+  margin-top: -2px;
+  background: white;
+  transform: rotate(45deg) translateY(-50%) translateX(-50%);
+}
+.remove-mark:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 20px;
+  height: 4px;
+  margin-top: -2px;
+  background: white;
+}
+.update-mark {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 20px 0 0px;
+  padding: 0;
+  width: 4px;
+  height: 20px;
+  margin-top: -2px;
+  background: white;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.update-mark:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: 20px;
+  height: 4px;
+  background: white;
+  transform: translateY(-50%) translateX(-50%);
+}
+.create {
+  cursor: pointer;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.create-text-container {
+  cursor: pointer;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+.create-text-container:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.create-text {
+  margin-left: 16px;
+  font-size: 0.8rem;
 }
