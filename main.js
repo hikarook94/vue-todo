@@ -37,8 +37,12 @@ let app = new Vue({
       this.todos[index].done = true
       this.writeStorage()
     },
-    createNew: function () {
+    onCreateMode: function () {
       this.createMode = true
+    },
+    offCreateMode: function () {
+      this.text = ''
+      this.createMode = false
     },
     writeStorage: function () {
       localStorage.setItem('todos', JSON.stringify(this.todos))

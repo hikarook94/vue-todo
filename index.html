@@ -27,10 +27,11 @@
       <div id="new">
         <template v-if="createMode">
           <input type="text" v-model="text">
-          <button @click="addTodo()">登録</button>
+          <button @click="addTodo">登録</button>
+          <button @click="offCreateMode">キャンセル</button>
         </template>
         <template v-else>
-          <div @click="createNew()">+ 新規作成</div>
+          <div @click="onCreateMode">+ 新規作成</div>
         </template>
       </div>
     </div>
