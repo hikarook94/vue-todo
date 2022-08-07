@@ -23,7 +23,7 @@
         </div>
         <template v-if="!todo.edit">
           <div class="todo-text-container">
-            <p class="todo-text" @click="onEditTodo(index)" v-bind:class="{ 'line-through' : todo.done }">
+            <p class="todo-text" @click="doEditTodo(index)" v-bind:class="{ 'line-through' : todo.done }">
               {{ todo.text }}
             </p>
           </div>
@@ -48,7 +48,7 @@
             <div class="todo-button-area">
               <label :for="removeTargetId(index)">
                 <span class="remove-mark"></span>
-                <button :id="removeTargetId(index)" class="todo-button" @click="offEditTodo(index)"></button>
+                <button :id="removeTargetId(index)" class="todo-button" @click="cancelEditTodo(index)"></button>
               </label>
             </div>
           </div>
@@ -70,13 +70,13 @@
             <div class="todo-button-area">
               <label for="create-cansel">
                 <span class="remove-mark"></span>
-                <button id="create-cansel" class="todo-button" @click="offCreateMode"></button>
+                <button id="create-cansel" class="todo-button" @click="hideCreateMode"></button>
               </label>
             </div>
           </div>
         </div>
         <div v-else class="create-text-container">
-          <div class="create-text" @click="onCreateMode">+ 新規作成</div>
+          <div class="create-text" @click="showCreateMode">+ 新規作成</div>
         </div>
       </div>
     </div>
