@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Vue.js TODO</title>
+</head>
+<body>
+  <div id="app">
+    <div id="header">
+      <h1 id="title">TODO リスト</h1>
+    </div>
+    <div id="todo-area">
+      <div class="todo" v-for="(todo, index) in todos" :key="todo.id">
+        <div class="todo-checkbox-container">
+          <label :for="doneTargetId(index)" class="todo-checkbox-label">
+            <div class="todo-checkbox-box"></div>
+            <div class="todo-checkbox-check" v-show="todo.done"></div>
+            <input :id="doneTargetId(index)" class="todo-checkbox" type="checkbox" v-model="todo.done">
+          </label>
+        </div>
+        <template v-if="!todo.edit">
+          <div class="todo-text-container">
+            <p class="todo-text" @click="doEditTodo(index)" v-bind:class="{ 'line-through' : todo.done }">
+              {{ todo.text }}
+            </p>
+          </div>
+          <div class="todo-button-container">
+            <label :for="removeTargetId(index)">
+              <span class="remove-mark"></span>
+              <button :id="removeTargetId(index)" class="todo-button" @click="removeTodo(index)">削除</button>
+            </label>
+          </div>
+        </template>
+        <template v-else>
+          <div class="todo-text-container">
+            <input class="todo-input" type="text" v-model="todo.text">
+          </div>
+          <div class="todo-button-container">
+            <div class="todo-button-area">
+              <label :for="updateTargetId(index)">
+                <span class="update-mark"></span>
+                <button :id="updateTargetId(index)" class="todo-button" @click="saveTodo(index, todo.text)"></button>
+              </label>
+            </div>
+            <div class="todo-button-area">
+              <label :for="removeTargetId(index)">
+                <span class="remove-mark"></span>
+                <button :id="removeTargetId(index)" class="todo-button" @click="cancelEditTodo(index)"></button>
+              </label>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div id="new">
+        <div class="create" v-if="createMode">
+          <div class="todo-checkbox-container"></div>
+          <div class="todo-text-container">
+            <input class="todo-input" type="text" v-model="text">
+          </div>
+          <div class="todo-button-container">
+            <div class="todo-button-area">
+              <label for="create-button">
+                <span class="update-mark"></span>
+                <button id="create-button" class="todo-button" @click="addTodo"></button>
+              </label>
+            </div>
+            <div class="todo-button-area">
+              <label for="create-cansel">
+                <span class="remove-mark"></span>
+                <button id="create-cansel" class="todo-button" @click="hideCreateMode"></button>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div v-else class="create-text-container">
+          <div class="create-text" @click="showCreateMode">+ 新規作成</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
